@@ -1,5 +1,7 @@
 package src
 
+import "fmt"
+
 func TwoSum(nums []int, target int) []int {
 	var searchArray map[int]int
 	searchArray = make(map[int]int)
@@ -29,4 +31,19 @@ func BinarySearch(nums []int, target int) int {
 		return l
 	}
 	return -1
+}
+
+func MaxSubArray(nums []int) int {
+	res := nums[0]
+	n := len(nums)
+	for cur := 1; cur < n; cur++ {
+		if nums[cur]+nums[cur-1] > nums[cur] {
+			nums[cur] += nums[cur-1]
+		}
+		if nums[cur] > res {
+			res = nums[cur]
+		}
+	}
+	fmt.Println(nums)
+	return res
 }
