@@ -1,6 +1,9 @@
 package src
 
-import "fmt"
+import (
+	"fmt"
+	"neekity.com/al-cn/src/common"
+)
 
 func TwoSum(nums []int, target int) []int {
 	var searchArray map[int]int
@@ -63,4 +66,19 @@ func PlusOne(digits []int) []int {
 		return append([]int{1}, digits...)
 	}
 	return digits
+}
+
+func ReverseList(head *common.ListNode) *common.ListNode {
+	if head == nil {
+		return head
+	}
+	curr := head
+	var prev *common.ListNode
+	for curr != nil {
+		next := curr.Next
+		curr.Next = prev
+		prev = curr
+		curr = next
+	}
+	return prev
 }
