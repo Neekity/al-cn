@@ -2,6 +2,7 @@ package src
 
 import (
 	"fmt"
+	"math"
 	"neekity.com/al-cn/src/common"
 )
 
@@ -104,4 +105,19 @@ func MergeTwoLists(list1 *common.ListNode, list2 *common.ListNode) *common.ListN
 		cur.Next = list1
 	}
 	return dump.Next
+}
+
+func Reverse(x int32) int {
+	var res int32
+	var digit int32
+	res = 0
+	for x != 0 {
+		if res < math.MinInt32/10 || res > math.MaxInt32/10 {
+			return 0
+		}
+		digit = x % 10
+		x = x / 10
+		res = 10*res + digit
+	}
+	return int(res)
 }
