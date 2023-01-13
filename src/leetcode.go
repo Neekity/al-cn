@@ -286,3 +286,31 @@ func LongestValidParentheses(s string) int {
 
 	return re * 2
 }
+
+func FirstMissingPositive(nums []int) int {
+	var abs func(int) int
+	abs = func(input int) int {
+		if input < 0 {
+			return -input
+		}
+		return input
+	}
+	lenN := len(nums)
+	for i := 0; i < lenN; i++ {
+		if nums[i] <= 0 {
+			nums[i] = lenN + 1
+		}
+	}
+	for i := 0; i < lenN; i++ {
+		idx := abs(nums[i])
+		if idx < lenN+1 {
+			nums[idx-1] = -abs(nums[idx-1])
+		}
+	}
+	for i := 0; i < lenN; i++ {
+		if nums[i] > 0 {
+			return i + 1
+		}
+	}
+	return lenN + 1
+}
