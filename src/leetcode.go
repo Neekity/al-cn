@@ -314,3 +314,21 @@ func FirstMissingPositive(nums []int) int {
 	}
 	return lenN + 1
 }
+
+func Trap2(height []int) int {
+	n := len(height)
+	left, right, leftMax, rightMax, res := 0, n-1, 0, 0, 0
+	for left < right {
+		leftMax = common.Max(height[left], leftMax)
+		rightMax = common.Max(height[right], rightMax)
+		if height[left] < height[right] {
+			res += leftMax - height[left]
+			left++
+		} else {
+			res += rightMax - height[right]
+			right--
+		}
+	}
+
+	return res
+}
